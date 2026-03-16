@@ -41,8 +41,11 @@ class CatalogController extends Controller
             ->where('status', 'active')
             ->firstOrFail();
 
+        $settings = \App\Models\Setting::pluck('value', 'key')->toArray();
+
         return Inertia::render('Catalog/Show', [
             'product' => $product,
+            'settings' => $settings,
         ]);
     }
 }

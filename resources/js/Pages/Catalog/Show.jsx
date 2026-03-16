@@ -9,7 +9,7 @@ export default function Show({ product, settings }) {
         product.variants?.[0]?.id || null
     );
     const [paymentMethod, setPaymentMethod] = useState('cash'); // 'cash' or 'credit'
-    
+
     const minDp = parseInt(product.dp_amount) || 0;
     const [customDp, setCustomDp] = useState(minDp);
 
@@ -59,14 +59,14 @@ export default function Show({ product, settings }) {
     const generateWhatsAppLink = () => {
         const phone = "6282176032925";
         const colorText = selectedVariant ? ` (Warna: ${selectedVariant.color_name})` : '';
-        
+
         let paymentInfo = `*Metode Bayar:* Kontan\n*Harga:* ${formatPrice(product.price)}`;
         if (paymentMethod === 'credit') {
             paymentInfo = `*Metode Bayar:* Kredit\n*Harga Produk:* ${formatPrice(product.price)}\n*Rencana DP:* ${formatPrice(customDp)}\n*(Mohon info estimasi cicilan lebih lanjut)*`;
         }
 
         const text = `Halo Admin, saya tertarik dengan produk ini:\n\n*Nama:* ${product.name}${colorText}\n${paymentInfo}\n\n*Link:* ${window.location.href}\n\nApakah stok masih tersedia?`;
-        
+
         return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
     };
 
@@ -161,19 +161,19 @@ export default function Show({ product, settings }) {
                             <div className="flex border-b border-zinc-200 dark:border-zinc-800">
                                 <button
                                     onClick={() => setPaymentMethod('cash')}
-                                    className={`flex-1 py-3.5 text-sm font-semibold transition-colors ${paymentMethod === 'cash' 
-                                            ? 'bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900' 
-                                            : 'bg-zinc-50 dark:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50'
-                                    }`}
+                                    className={`flex-1 py-3.5 text-sm font-semibold transition-colors ${paymentMethod === 'cash'
+                                        ? 'bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900'
+                                        : 'bg-zinc-50 dark:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50'
+                                        }`}
                                 >
                                     Beli Kontan
                                 </button>
                                 <button
                                     onClick={() => setPaymentMethod('credit')}
-                                    className={`flex-1 py-3.5 text-sm font-semibold transition-colors flex items-center justify-center gap-2 ${paymentMethod === 'credit' 
-                                            ? 'bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900' 
-                                            : 'bg-zinc-50 dark:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50'
-                                    }`}
+                                    className={`flex-1 py-3.5 text-sm font-semibold transition-colors flex items-center justify-center gap-2 ${paymentMethod === 'credit'
+                                        ? 'bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900'
+                                        : 'bg-zinc-50 dark:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-50'
+                                        }`}
                                 >
                                     <Calculator size={16} /> Simulasi Cicilan
                                 </button>
@@ -187,21 +187,21 @@ export default function Show({ product, settings }) {
                                             Rencana DP (Minimum {formatPrice(minDp)})
                                         </label>
                                         <div className="flex gap-3">
-                                            <input 
-                                                type="number" 
-                                                value={customDp} 
+                                            <input
+                                                type="number"
+                                                value={customDp}
                                                 onChange={e => setCustomDp(parseInt(e.target.value) || 0)}
                                                 className="w-full rounded-xl border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 focus:ring-emerald-500 focus:border-emerald-500"
                                             />
                                         </div>
                                         {customDp < minDp && (
-                                            <p className="text-rose-500 text-xs mt-1.5 flex items-center"><Info size={12} className="mr-1"/> DP tidak boleh kurang dari minimal ({formatPrice(minDp)}).</p>
+                                            <p className="text-rose-500 text-xs mt-1.5 flex items-center"><Info size={12} className="mr-1" /> DP tidak boleh kurang dari minimal ({formatPrice(minDp)}).</p>
                                         )}
                                     </div>
 
                                     <div className="space-y-3">
                                         <h4 className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-3">Estimasi Cicilan per Bulan</h4>
-                                        
+
                                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                                             {tenors.map(month => (
                                                 <div key={month} className="bg-white dark:bg-zinc-900 p-3 rounded-xl border border-zinc-200 dark:border-zinc-700 text-center shadow-sm">
@@ -212,9 +212,7 @@ export default function Show({ product, settings }) {
                                                 </div>
                                             ))}
                                         </div>
-                                        <p className="text-[11px] text-zinc-400 dark:text-zinc-500 mt-3 italic text-center">
-                                            *Nilai di atas hanyalah estimasi simulasi. Hasil final tergantung persetujuan leasing.{interestRate > 0 && ` (Estimasi Bunga: ${interestRate}% p.m)`}
-                                        </p>
+
                                     </div>
                                 </div>
                             )}
@@ -234,8 +232,8 @@ export default function Show({ product, settings }) {
                                                 key={variant.id}
                                                 onClick={() => handleVariantChange(variant.id)}
                                                 className={`relative flex items-center gap-2.5 px-4 py-2.5 rounded-xl border-2 transition-all duration-200 ${isSelected
-                                                        ? 'border-zinc-900 dark:border-zinc-50 bg-zinc-50 dark:bg-zinc-800 shadow-sm'
-                                                        : 'border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500'
+                                                    ? 'border-zinc-900 dark:border-zinc-50 bg-zinc-50 dark:bg-zinc-800 shadow-sm'
+                                                    : 'border-zinc-200 dark:border-zinc-700 hover:border-zinc-400 dark:hover:border-zinc-500'
                                                     } ${variant.stock === 0 ? 'opacity-50' : ''}`}
                                             >
                                                 <div
@@ -309,8 +307,8 @@ export default function Show({ product, settings }) {
                                 target={isSoldOut || (paymentMethod === 'credit' && customDp < minDp) ? "_self" : "_blank"}
                                 rel="noopener noreferrer"
                                 className={`w-full flex items-center justify-center p-4 rounded-xl font-bold text-lg transition-all ${isSoldOut || (paymentMethod === 'credit' && customDp < minDp)
-                                        ? 'bg-zinc-200 dark:bg-zinc-800 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'
-                                        : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-xl shadow-emerald-600/20 hover:-translate-y-1'
+                                    ? 'bg-zinc-200 dark:bg-zinc-800 text-zinc-400 dark:text-zinc-600 cursor-not-allowed'
+                                    : 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-xl shadow-emerald-600/20 hover:-translate-y-1'
                                     }`}
                                 onClick={(e) => { if (isSoldOut || (paymentMethod === 'credit' && customDp < minDp)) e.preventDefault(); }}
                             >
