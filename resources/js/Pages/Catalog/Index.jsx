@@ -9,13 +9,13 @@ export default function Index({ products, categories, filters }) {
 
     const handleSearch = (e) => {
         e.preventDefault();
-        router.get('/', { search: searchTerm, category: selectedCategory }, { preserveState: true });
+        router.get('/katalog', { search: searchTerm, category: selectedCategory }, { preserveState: true });
     };
 
     const handleCategoryChange = (slug) => {
         const newCategory = slug === selectedCategory ? '' : slug;
         setSelectedCategory(newCategory);
-        router.get('/', { search: searchTerm, category: newCategory }, { preserveState: true });
+        router.get('/katalog', { search: searchTerm, category: newCategory }, { preserveState: true });
     };
 
     const formatPrice = (price) => {
@@ -93,7 +93,7 @@ export default function Index({ products, categories, filters }) {
                                 <p className="text-zinc-500 dark:text-zinc-400">Coba ubah kata kunci pencarian atau filter kategori.</p>
                                 {(searchTerm || selectedCategory) && (
                                     <button
-                                        onClick={() => { setSearchTerm(''); setSelectedCategory(''); router.get('/'); }}
+                                        onClick={() => { setSearchTerm(''); setSelectedCategory(''); router.get('/katalog'); }}
                                         className="mt-6 px-4 py-2 bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 rounded-lg font-medium hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors"
                                     >
                                         Reset Filter

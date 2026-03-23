@@ -100,9 +100,8 @@ export default function Contact() {
                             <iframe
                                 title="Lokasi Toko"
                                 src="https://www.google.com/maps/embed?pb=!4v1773686474740!6m8!1m7!1sf2JPizlwLPDi-QovxsU61w!2m2!1d-3.835968208138377!2d104.4433209581216!3f0!4f0!5f0.7820865974627469"
-                                width="100%"
-                                height="100%"
-                                style={{ border: 0, borderRadius: '1.5rem' }}
+                                className="w-full h-[350px] sm:h-[450px] lg:h-full"
+                                style={{ border: 0, borderRadius: '1.5rem', minHeight: '350px' }}
                                 allowFullScreen=""
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
